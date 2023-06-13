@@ -4,16 +4,27 @@ import Card from "../UI/Card";
 
 import classes from "./Meals.module.css";
 import MealsContext from "../../Store/meals-context";
+import MealItem from "./MealItem";
 
 const Meals = (props) => {
   const MealsCtx = useContext(MealsContext);
+  console.log(MealsCtx.meals);
+  const mealList = MealsCtx.meals.map((meal) => (
+    <MealItem
+      description={meal.description}
+      name={meal.name}
+      id={meal.id}
+      price={meal.price}
+    ></MealItem>
+  ));
 
+  console.log(mealList);
   return (
-    <Card>
-      <h1>{MealsCtx.meals[0].name}</h1>
-      <p>{MealsCtx.meals[0].description}</p>
-      <p>{MealsCtx.meals[0].price}</p>
-    </Card>
+    <div className={classes.meals}>
+      <Card className={classes.card}>
+        <ul>{mealList}</ul>
+      </Card>
+    </div>
   );
 };
 export default Meals;
