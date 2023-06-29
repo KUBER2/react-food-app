@@ -9,13 +9,18 @@ export const CartContextProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
 
   function addToCart(mealToAdd) {
+    console.log(cartItems);
     console.log(mealToAdd);
     setCartItems((items) => {
+      console.log(items);
       let i = items.findIndex((e) => e.mealId === mealToAdd.mealId);
       if (i < 0) {
-        return items.add(mealToAdd);
+        return [...items, mealToAdd];
       } else {
-        items[i] = mealToAdd;
+        items[i] = {
+          mealId: mealToAdd.mealId,
+          ammount: items[i].ammount + parseInt(mealToAdd.ammount),
+        };
         return items;
       }
     });

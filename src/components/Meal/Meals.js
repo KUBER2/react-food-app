@@ -8,9 +8,9 @@ import MealItem from "./MealItem";
 
 const Meals = (props) => {
   const MealsCtx = useContext(MealsContext);
-  console.log(MealsCtx.meals);
   const mealList = MealsCtx.meals.map((meal) => (
     <MealItem
+      key={meal.id}
       description={meal.description}
       name={meal.name}
       id={meal.id}
@@ -18,7 +18,6 @@ const Meals = (props) => {
     ></MealItem>
   ));
 
-  console.log(mealList);
   return (
     <div className={classes.meals}>
       <Card className={classes.card}>
