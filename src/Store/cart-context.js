@@ -9,10 +9,7 @@ export const CartContextProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
 
   function addToCart(mealToAdd) {
-    console.log(cartItems);
-    console.log(mealToAdd);
     setCartItems((items) => {
-      console.log(items);
       let i = items.findIndex((e) => e.mealId === mealToAdd.mealId);
       if (i < 0) {
         return [...items, mealToAdd];
