@@ -10,13 +10,15 @@ const Cart = (props) => {
   const cartItems = cartCtx.cartItems;
 
   return (
-    <Modal>
+    <Modal onBackDropClick={props.onHideCard}>
       <div className={classes.total}>
         <span>Total amount</span>
         <span>34.65</span>
       </div>
       <div className={classes.actions}>
-        <button className={classes["button--alt"]}>Close</button>
+        <button className={classes["button--alt"]} onClick={props.onHideCard}>
+          Close
+        </button>
         <button className={classes.button}>Order</button>
       </div>
     </Modal>
