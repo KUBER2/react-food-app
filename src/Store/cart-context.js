@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
-const CartContext = React.createContext({
-  mealId: "",
-  ammount: 0,
-});
+const CartContext = React.createContext([
+  {
+    mealId: "",
+    ammount: 0,
+  },
+]);
 
 export const CartContextProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
@@ -16,9 +18,9 @@ export const CartContextProvider = (props) => {
       } else {
         items[i] = {
           mealId: mealToAdd.mealId,
-          ammount: items[i].ammount + parseInt(mealToAdd.ammount),
+          ammount: parseInt(items[i].ammount + parseInt(mealToAdd.ammount)),
         };
-        return items;
+        return [...items];
       }
     });
   }
@@ -27,9 +29,9 @@ export const CartContextProvider = (props) => {
   };
 
   const cartContextValue = {
-    cartItems,
-    addToCart,
-    clearCart,
+    cartItems: cartItems,
+    addToCart: addToCart,
+    clearCart: clearCart,
   };
   return (
     <CartContext.Provider value={cartContextValue}>
